@@ -64,21 +64,21 @@ class DBconnection:
             specialty VARCHAR(100) NOT NULL,
             is_active BOOLEAN DEFAULT TRUE NOT NULL,
             completed_missions INT DEFAULT 0 NOT NULL,
-            failed_missions INTz DEFAULT 0 NOT NULL,
+            failed_missions INT DEFAULT 0 NOT NULL,
             agent_rank ENUM('Junior','Senior','Commander') NOT NULL
             )
             """
             cursor.execute(sql_table_agent)
 
             sql_table_missions = """
-            CREATE TABLE IF NOT EXISTS missions(
+            CREATE TABLE IF NOT EXISTS missions (
             id INT PRIMARY KEY AUTO_INCREMENT,
             title VARCHAR(100) NOT NULL,
             description TEXT NOT NULL,
             location VARCHAR(100) NOT NULL,
-            difficulty INT NOT NULL,
-            importance INT NOT NULL,
-            status VARCHAR(100) DEFAULT 'NEW' NOT NULL,
+            difficulty INT NOT NULL CHECK (difficulty >= 1 AND difficulty <=10),
+            importance INT NOT NULL CHECK (importance >= 1 AND importance <=10),
+            status ENUM('NEW','ASSIGNED','IN_PROGRESS','COMPLETED','FAILED','CANCELLED') DEFAULT 'NEW' NOT NULL,
             risk_level VARCHAR(100) NOT NULL,
             assigned_agent_id INT DEFAULT NULL
             )
@@ -92,3 +92,6 @@ class DBconnection:
             cursor.close()
             conn.close()
 
+if __name__ == "__main__":
+    db = DBconnection()
+    db.create_tables()
