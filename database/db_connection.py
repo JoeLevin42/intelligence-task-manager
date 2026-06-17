@@ -64,7 +64,7 @@ class DBconnection:
             specialty VARCHAR(100) NOT NULL,
             is_active BOOLEAN DEFAULT TRUE NOT NULL,
             completed_missions INT DEFAULT 0 NOT NULL,
-            failed_missions INT DEFAULT 0 NOT NULL,
+            failed_missions INTz DEFAULT 0 NOT NULL,
             agent_rank ENUM('Junior','Senior','Commander') NOT NULL
             )
             """
