@@ -6,10 +6,26 @@ This system supposed to manage agents and their missions with ordered tables
 
 ## Running instructions
 
+**Python environment command**
+
+```
+python -m venv .venv
+.\.venv\Scripts\activate
+```
+
+**Python packages to install also in the requirements.txt**
+
+```
+pip install fastapi uvicorn  mysql-connector-python 
+```
+
+**Open Docker app and run this in the cli**
+
 ```
 docker run -d --name intelligence-mysql -e MYSQL_ROOT_PASSWORD=1234 \
   -e MYSQL_DATABASE=Intelligence_db -p 3306:3306 mysql:8.0
 ```
+
 **DATABASE NAME** = Intelligence_db
 
 
