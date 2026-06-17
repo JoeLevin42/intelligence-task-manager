@@ -147,7 +147,7 @@ class MissionDB():
 
         try:
             cursor.execute(sql,(id,))
-            rows = cursor.fetchall()
+            rows = cursor.fetchall() # Returns 
             return rows
         
         finally:
@@ -254,10 +254,11 @@ class MissionDB():
 if __name__ == "__main__":
     ms_db = MissionDB()
     create_dict = {"title":"blDEablaDE","description":"This mission is very important","location":"Iran",
-                   "difficulty":1 , "importance":5}
+                   "difficulty":10 , "importance":5}
     # print(ms_db.create_mission(create_dict))
-    # print(ms_db.assign_mission(5,1))
-    # print(ms_db.get_open_missions_by_agent(2))
-    # print(ms_db.count_by_status("IN-PROGRESS"))
+    # print(ms_db.assign_mission(6,2)) #not changing nothing in the status
+    print((ms_db.get_mission_by_id(2)))
+    # print(ms_db.count_by_status("IN_PROGRESS"))
     # print(ms_db.count_open_missions())
+    # print(ms_db.get_top_agent())
     

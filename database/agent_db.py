@@ -221,9 +221,8 @@ if __name__ == "__main__":
     #         )"""
     create_dict = {"name":"David","specialty":"writer","agent_rank":"Junior"}
     # print(ag_db.create_agent(data=create_dict))
-    # ag_db.increment_failed(9)
-    # ag_db.increment_completed(9)
-    # print(ag_db.get_agent_performance(20)) # need to check what to do with 0 completed
-    
-   
+    # ag_db.increment_failed(3)
+    # ag_db.increment_completed(3)
+    # print(ag_db.get_agent_performance(3)) # need to check what to do with 0 completed
+    print(ag_db.get_agent_by_id(2))
     

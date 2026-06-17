@@ -94,4 +94,5 @@ class DBconnection:
 
 if __name__ == "__main__":
     db = DBconnection()
+
     db.create_tables()
