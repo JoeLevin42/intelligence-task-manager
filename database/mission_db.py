@@ -1,4 +1,4 @@
-from db_connection import DBconnection
+from database.db_connection import DBconnection
 
 connector = DBconnection()
 
@@ -37,8 +37,8 @@ class MissionDB():
            
             new_id = cursor.lastrowid
 
-            agent_dict = self.get_mission_by_id(new_id) 
-            return agent_dict
+            mission_dict = self.get_mission_by_id(new_id) 
+            return mission_dict
         
         except Exception as e:
             conn.rollback()
@@ -206,7 +206,7 @@ class MissionDB():
             cursor.close()
             conn.close()
 
-    def count_critical_missions():
+    def count_critical_missions(self):
         
         conn = connector.get_connection()
         cursor = conn.cursor(dictionary=True)
@@ -215,7 +215,7 @@ class MissionDB():
         sql = """
         SELECT COUNT(*) AS total_critical_missions
             FROM missions 
-            WHERE status = 'ASSIGNED' OR status = 'IN_PROGRESS'
+            WHERE status = 'CRITICAL'
         """
 
         try:

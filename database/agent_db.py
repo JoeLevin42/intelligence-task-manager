@@ -1,4 +1,5 @@
-from db_connection import DBconnection
+from database.db_connection import DBconnection
+
 
 connector = DBconnection()
 
@@ -81,6 +82,7 @@ class AgentsDB():
             cursor.execute(sql,values)
             is_changed = cursor.rowcount >0
             conn.commit()
+            return is_changed
 
         except Exception as e:
             conn.rollback()
@@ -102,7 +104,8 @@ class AgentsDB():
             cursor.execute(sql,(id,))
             is_changed = cursor.rowcount > 0
             conn.commit()
-
+            return is_changed
+        
         except Exception as e:
             conn.rollback()
 
