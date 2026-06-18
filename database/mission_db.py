@@ -246,8 +246,10 @@ class MissionDB():
         try:
             cursor.execute(sql)
             row = cursor.fetchone() # Returns {assigned_agent_id ,:...: number} # IF ISNT ANY NUMBER NONE!
-
-            return row
+            if row is None:
+                return row
+            
+            return row.get("assigned_agent_id")
 
         
         finally:

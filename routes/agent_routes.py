@@ -81,7 +81,7 @@ def update_agent(id: int , data : UpdateAgent):
      print(valid_dict)
      if not valid_dict:
           logger.error("The data is empty cant update! or something not legal")
-          raise HTTPException(status_code=400, detail="The data is empty can update!")   
+          raise HTTPException(status_code=400, detail="The data is empty can update! or something not legal")   
 
      
      is_changed = ag_db.update_agent(id=id, data=valid_dict)
