@@ -163,7 +163,7 @@ class MissionDB():
 
         try:
             cursor.execute(sql)
-            row = cursor.fetchone() # Returns dict {total_missions:number}
+            row = cursor.fetchone()["total_missions"] # Returns dict {total_missions:number}
             return row
         
         finally:
@@ -179,7 +179,7 @@ class MissionDB():
 
         try:
             cursor.execute(sql,(status,))
-            row = cursor.fetchone() # Returns dict {missions_by_status:number}
+            row = cursor.fetchone()["total_missions"] # Returns dict {missions_by_status:number}
             return row
         
         finally:
@@ -199,7 +199,7 @@ class MissionDB():
 
         try:
             cursor.execute(sql)
-            row = cursor.fetchone() # Returns dict {total_open_missions :number}
+            row = cursor.fetchone()["total_open_missions"] # Returns dict {total_open_missions :number}
             return row
         
         finally:
@@ -220,7 +220,7 @@ class MissionDB():
 
         try:
             cursor.execute(sql)
-            row = cursor.fetchone() # Returns dict {total_critical_missions :number}
+            row = cursor.fetchone()["total_critical_missions"] # Returns dict {total_critical_missions :number}
             return row
         
         finally:

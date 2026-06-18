@@ -202,7 +202,7 @@ class AgentsDB():
 
         try:
             cursor.execute(sql)
-            row = cursor.fetchone() #Returns {total_active:number} #optional ["total_active"] 
+            row = cursor.fetchone()["total_active"] #Returns {total_active:number} #optional ["total_active"] 
             return row
         
         finally:

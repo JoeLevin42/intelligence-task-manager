@@ -16,18 +16,6 @@ class CreateMission(BaseModel):
         difficulty : int 
         importance : int
        
-"""
-title VARCHAR(100) NOT NULL,
-description TEXT NOT NULL,
-location VARCHAR(100) NOT NULL,
-difficulty INT NOT NULL CHECK (difficulty >= 1 AND difficulty <=10),
-importance INT NOT NULL CHECK (importance >= 1 AND importance <=10),
-status ENUM('NEW','ASSIGNED','IN_PROGRESS','COMPLETED','FAILED','CANCELLED') DEFAULT 'NEW' NOT NULL,
-risk_level VARCHAR(100) NOT NULL,
-assigned_agent_id INT DEFAULT NULL
-)
-
-"""
 
 @router.post("/missions")
 def create_mission(data : CreateMission):
