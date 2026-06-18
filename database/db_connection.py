@@ -39,17 +39,7 @@ class DBconnection:
         """
         try:
             cursor.execute(sql)
-
-            is_changed = cursor.rowcount >0
-            if is_changed:
-                logger.info("database created")
-                return {"message":"The database created successfully!"}
-
-            return {"message":"the database is already exists"}
-
-        except Exception as e:
-
-            raise
+            logger.info("create database if not exists")
         
         finally:
             cursor.close()
@@ -91,12 +81,12 @@ class DBconnection:
             #Maybe check here if created?
 
             cursor.execute(sql_table_missions)
-            logger.info("tables successfully created")
+            
+            is_changed = cursor.rowcount > 0 
+            if is_changed:
+                logger.info("tables successfully created")
+
         finally:
             cursor.close()
             conn.close()
 
-if __name__ == "__main__":
-    db = DBconnection()
-
-    db.create_tables()

@@ -12,8 +12,8 @@ logging.basicConfig(filename="./logs/app.log",level=logging.INFO, format="%(asct
 app = FastAPI()
 
 connector.create_database()
-
 connector.create_tables()
+
 
 
 app.include_router(agent_router)

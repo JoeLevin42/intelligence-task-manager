@@ -3,6 +3,8 @@
 ## system description
 
 This system supposed to manage agents and their missions with ordered tables
+there is important rules that this system keeps and giving for the good order
+the rules is down below
 
 ## Running instructions
 
@@ -33,7 +35,7 @@ docker run -d --name intelligence-mysql -e MYSQL_ROOT_PASSWORD=1234 \
 ## Python DB to run:
 
 create object from DBconnection class in db_connection.py
-and run this for example ONLY FOR TESTS!
+and run this for example **ONLY FOR TESTS!**
 
 ```
 my_db = DBconnection()
@@ -173,6 +175,7 @@ The functions create_database() and create_tables() will run in the start of the
 ## Main.py:
 
 initialize the fastapi with all the routes and when the server up calling to created database
+and tables if not exist and runs the uvicorn server on the fastapi
 
 
 ## Agents endpoints
@@ -201,6 +204,45 @@ initialize the fastapi with all the routes and when the server up calling to cre
 
 - **GET** |
 /reports/summary | general report of all the system
-- **GET** |
-/reports/summary | missions by status report
+- **GET** |/reports/missions-by-status
+| missions by status report 
 - **GET** |/reports/top-agent | the agent with the most complete missions
+
+- **/reports/summary** returns 
+
+for example
+```
+}
+"active_agents_count": 0,
+"total_missions": 0,
+"open_missions": 0,
+"completed_missions": 0,
+"failed_missions": 0,
+"critical_missions": 0
+}
+```
+
+- **/reports/summary** returns 
+
+for example 
+
+```
+{
+"open": 5,
+"in_progress": 3,
+"completed": 12,
+"failed": 1,
+"canceled": 2
+}
+
+```
+
+
+## Assign mission check
+
+- check if the mission exists | if not 404
+- check if the agent exist | if not 404
+- the mission in status NEW | if not not available 400
+- the agent active | if not 400
+- less than three mission - | 400 status
+- critical mission to not commander - 400 status

@@ -67,6 +67,7 @@ def assign_mission_to_agent(id: int , agent_id: int):
     
     if type(id) != int or type(agent_id) != int:
          raise HTTPException(status_code=422, detail="The id have to be int!")
+    
     the_agent = ag_db.get_agent_by_id(id=agent_id)
     if the_agent is None:
          logger.error("The agent not found")
@@ -115,7 +116,7 @@ def start_mission(id: int):
 
     message = ms_db.update_mission_status(id=id , status="IN_PROGRESS")
     logger.info("mission had been successfully started!")
-    return message
+    return message 
 
 
 @router.put("/missions/{id}/complete")
