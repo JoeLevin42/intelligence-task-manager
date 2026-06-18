@@ -108,3 +108,94 @@ def assign_mission_to_agent(id: int , agent_id: int):
         ms_db.assign_mission(m_id=id,a_id=agent_id)
 
     return {"message":"The mission successfully assign to the agent!"}
+
+@router.put("/missions/{id}/start")
+def start_mission(id: int):
+    if type(id) != int:
+            logger.error("The id have to be int!")
+            raise HTTPException(status_code=422, detail="The id have to be int!")
+        
+    the_mission = ms_db.get_mission_by_id(id=id)
+    if the_mission is None:
+         logger.error("The mission not found!")
+         raise HTTPException(status_code=404 , detail="The mission not found!")
+    
+    if the_mission.get("status") != "ASSIGNED":
+         logger.error("for start mission, status have to be ASSIGEND")
+         raise HTTPException(status_code=400 ,detail="for start mission, status have to be ASSIGEND")
+    
+
+    message = ms_db.update_mission_status(id=id , status="IN_PROGRESS")
+    logger.info("mission had been successfully started!")
+    return message
+
+
+@router.put("/missions/{id}/complete")
+def complete_mission(id: int):
+    if type(id) != int:
+        logger.error("The id have to be int!")
+        raise HTTPException(status_code=422, detail="The id have to be int!")
+    
+    the_mission = ms_db.get_mission_by_id(id=id)
+    if the_mission is None:
+         logger.error("The mission not found!")
+         raise HTTPException(status_code=404 , detail="The mission not found!")
+    
+    if the_mission.get("status") != "IN_PROGRESS":
+         logger.error("for end mission, status have to be IN_PROGRESS!")
+         raise HTTPException(status_code=400 ,detail="for end mission, status have to be IN_PROGRESS!")
+   
+    agent_id = the_mission.get("assigned_agent_id")
+    message = ms_db.update_mission_status(id=id , status="COMPLETED")
+    logger.info("mission had been successfully completed!")
+    ag_db.increment_completed(id=agent_id)
+    logger.info(f"The agent completed counter mission increased id : {agent_id}")
+
+    return message
+
+@router.put("/missions/{id}/fail")
+def fail_mission(id: int):
+    
+    if type(id) != int:
+        logger.error("The id have to be int!")
+        raise HTTPException(status_code=422, detail="The id have to be int!")
+    
+    the_mission = ms_db.get_mission_by_id(id=id)
+    if the_mission is None:
+         logger.error("The mission not found!")
+         raise HTTPException(status_code=404 , detail="The mission not found!")
+    
+    if the_mission.get("status") != "IN_PROGRESS":
+         logger.error("for end mission, status have to be IN_PROGRESS!")
+         raise HTTPException(status_code=400 ,detail="for end mission, status have to be IN_PROGRESS!")
+   
+    agent_id = the_mission.get("assigned_agent_id")
+    message = ms_db.update_mission_status(id=id , status="FAILED")
+    logger.info("mission had been FAILED!")
+    ag_db.increment_failed(id=agent_id)
+    logger.info(f"The agent FAILED counter mission increased id : {agent_id}")
+
+    return message
+
+@router.put("/missions/{id}/cancel")
+def cancel_mission(id: int):
+     
+    if type(id) != int:
+        logger.error("The id have to be int!")
+        raise HTTPException(status_code=422, detail="The id have to be int!")
+        
+    the_mission = ms_db.get_mission_by_id(id=id)
+    if the_mission is None:
+         logger.error("The mission not found!")
+         raise HTTPException(status_code=404 , detail="The mission not found!")
+
+    
+    if (the_mission.get("status") != "ASSIGNED" and the_mission.get("status") != "NEW"):
+         logger.error("for end mission, status have to be have to be ASSIGNED or NEW ONLY!")
+         raise HTTPException(status_code=400 ,detail="for end mission, status have to be ASSIGNED or NEW ONLY!")
+    
+    message = ms_db.update_mission_status(id=id, status="CANCELLED")
+    logger.info("mission had been CANCELLED!")
+
+    return message
+    
