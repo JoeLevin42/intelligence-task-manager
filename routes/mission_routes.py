@@ -17,7 +17,7 @@ class CreateMission(BaseModel):
         importance : int
        
 
-@router.post("/missions")
+@router.post("/missions",status_code=201)
 def create_mission(data : CreateMission):
 
     if data.difficulty <= 0 or data.difficulty > 10:
@@ -34,7 +34,7 @@ def create_mission(data : CreateMission):
     if mission_dict is None:
          raise HTTPException(status_code=400, detail="The mission not created! something went wrong")
     
-    return {"message":"The mission successfully created!"}
+    return mission_dict
     
 
 

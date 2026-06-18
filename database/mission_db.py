@@ -1,7 +1,8 @@
 from database.db_connection import DBconnection
-
+from database import agent_db
 connector = DBconnection()
 
+ag_db = agent_db.AgentsDB()
 class MissionDB():
 
     
@@ -241,11 +242,13 @@ class MissionDB():
          LIMIT 1
         """
 
+
         try:
             cursor.execute(sql)
-            row = cursor.fetchone() # Returns {assigned_agent_id : number} # IF ISNT ANY NUMBER NONE!
+            row = cursor.fetchone() # Returns {assigned_agent_id ,:...: number} # IF ISNT ANY NUMBER NONE!
 
             return row
+
         
         finally:
             cursor.close()
@@ -257,7 +260,7 @@ if __name__ == "__main__":
                    "difficulty":10 , "importance":5}
     # print(ms_db.create_mission(create_dict))
     # print(ms_db.assign_mission(6,2)) #not changing nothing in the status
-    print((ms_db.get_mission_by_id(2)))
+    # print((ms_db.get_mission_by_id(2)))
     # print(ms_db.count_by_status("IN_PROGRESS"))
     # print(ms_db.count_open_missions())
     # print(ms_db.get_top_agent())

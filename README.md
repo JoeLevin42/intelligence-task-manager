@@ -17,6 +17,10 @@ python -m venv .venv
 
 ```
 pip install fastapi uvicorn  mysql-connector-python 
+or
+python -m pip install -r requirements.txt
+or
+pip install -r requirements.txt
 ```
 
 **Open Docker app and run this in the cli**
@@ -29,13 +33,22 @@ docker run -d --name intelligence-mysql -e MYSQL_ROOT_PASSWORD=1234 \
 ## Python DB to run:
 
 create object from DBconnection class in db_connection.py
-and run this for example
+and run this for example ONLY FOR TESTS!
 
 ```
 my_db = DBconnection()
 my_db.create_database()
 my_db.create_tables()
 ```
+
+## PYTHON RUN THE SERVER ALL COMMANDS
+
+```Pwershell
+uvicorn main:app 
+or
+py main.py 
+```
+
 
 **DATABASE NAME** = Intelligence_db
 
@@ -44,13 +57,16 @@ my_db.create_tables()
 
 ```
 intelligence-task-manager/
-├── database/
-│   ├── db_connection.py
-│   ├── agent_db.py
-│   └── mission_db.py
-├── README.md
-├── requirements.txt
-└── .gitignore
+├── main.py 
+├── database/ 
+├── routes/ 
+│ ├── agent_routes.py
+│ ├── mission_routes.py
+│ └── report_routes.py
+├── logs/ 
+│ └── app.log
+├── README.md 
+└── requirements.txt
 
 ```
 
@@ -85,11 +101,11 @@ intelligence-task-manager/
 
 ### Table of risk level
 
-**RISK LEVEL** | **SCORE** |
-**LOW** | 0 -9 |
-**MEDIUM** | 10 - 17 |
-**HIGHT** | 18 - 24 |
-**CRITICAL** | 25 +|
+- **RISK LEVEL** | **SCORE** |
+- **LOW** | 0 -9 |
+- **MEDIUM** | 10 - 17 |
+- **HIGHT** | 18 - 24 |
+- **CRITICAL** | 25 +|
 
 ## Table of mission status
 
@@ -152,3 +168,39 @@ The functions create_database() and create_tables() will run in the start of the
 - **Can to start mission** | only in status **ASSIGNED** after status **status=IN_PROGRESS** 
 - **Can to end mission** | only in status **IN_PROGRESS** after finish **status=failed, completed** 
 - **Can to cancel mission** | only in status **NEW , ASSIGNED** else raise an error
+
+
+## Main.py:
+
+initialize the fastapi with all the routes and when the server up calling to created database
+
+
+## Agents endpoints
+
+- **POST** |  /agents |  create new agent
+- **GET** | /agents| get all the agents
+- **GET** |/agents/{id} | get agents by id
+- **PUT** |/agents{id}| update agent
+- **PUT** |/agents/{id}/ deactivate| deactivate the agent
+- **GET** |/agents/{id}/performance| giving the agents performances 
+
+## Missions endpoints
+
+- **POST** | /missions |create new mission
+- **GET** | /missions | get all missions
+- **GET** | /missions/{id}| get mission by id
+- **PUT** |/missions/{id}/assign/{agent_id}| assign mission to agent
+- **PUT** |/missions/{id}/start| start mission
+- **PUT** |/missions/{id}/complete| complete and end the mission
+- **PUT** |
+/missions/{id}/fail| fail and end the mission
+- **PUT** |
+/missions/{id}/cancel  | cancel the mission
+
+## Reports endpoints
+
+- **GET** |
+/reports/summary | general report of all the system
+- **GET** |
+/reports/summary | missions by status report
+- **GET** |/reports/top-agent | the agent with the most complete missions

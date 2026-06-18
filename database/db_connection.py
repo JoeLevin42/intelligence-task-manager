@@ -1,4 +1,7 @@
 import mysql.connector as seqel 
+import logging
+
+logger = logging.getLogger(__name__)
 
 class DBconnection:
     def __init__(self):
@@ -39,8 +42,9 @@ class DBconnection:
 
             is_changed = cursor.rowcount >0
             if is_changed:
+                logger.info("database created")
                 return {"message":"The database created successfully!"}
-            
+
             return {"message":"the database is already exists"}
 
         except Exception as e:
@@ -87,7 +91,7 @@ class DBconnection:
             #Maybe check here if created?
 
             cursor.execute(sql_table_missions)
-
+            logger.info("tables successfully created")
         finally:
             cursor.close()
             conn.close()

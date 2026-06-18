@@ -84,3 +84,21 @@ def get_mission_by_status():
     except Exception as e:
             logger.error(f"The DB is down or there is problem {str(e)}")
             raise HTTPException(status_code=500 , detail=f"The DB is down or there is problem {str(e)}")
+    
+@router.get("/reports/top-agent")
+def get_top_agent():
+    try:
+        top_agent_id = ms_db.get_top_agent().get("assigned_agent_id")
+        if top_agent_id is None:
+            logger.error("No top agent probably the list empty")
+            raise HTTPException(status_code=404, detail="No top agent probably the list empty")
+
+        top_agent = ag_db.get_agent_by_id(id=top_agent_id)
+        if top_agent:
+            return top_agent
+        else:
+             raise HTTPException(status_code=404 , detail="No agent in with id")
+    
+    except Exception as e:
+            logger.error(f"The DB is down or there is problem {str(e)}")
+            raise HTTPException(status_code=500 , detail=f"The DB is down or there is problem {str(e)}")

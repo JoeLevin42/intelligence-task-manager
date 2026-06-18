@@ -61,9 +61,9 @@ def create_agent(data: CreateAgent):
 
 @router.get("/agents")
 def get_all_agents():
-    all_agents = ag_db.get_all_agents()
-
-    return all_agents
+     all_agents = ag_db.get_all_agents()
+     logger.info("returns all the agents to the user")
+     return all_agents
 
 @router.put("/agents/{id}")
 def update_agent(id: int , data : UpdateAgent):
@@ -103,6 +103,7 @@ def deactivate_agent(id: int):
 
      is_changed = ag_db.deactivate_agent(id=id)
      if not is_changed:
+          logger.error("The agent didn't updated probably he already non-active")
           raise HTTPException(status_code=400 , detail="The agent didn't updated")
 
      logger.info("The agent successfully deactivated!")

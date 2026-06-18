@@ -1,0 +1,52 @@
+2026-06-18 15:17:59,644|INFO|returns all the agents to the user
+2026-06-18 15:18:14,352|ERROR|The agent type is not illegal
+2026-06-18 15:18:22,521|ERROR|The agent type is not illegal
+2026-06-18 15:18:42,510|INFO|Trying to create new agent
+2026-06-18 15:18:42,564|INFO|agent successfully created and send the object to the user
+2026-06-18 15:18:46,434|INFO|Trying to create new agent
+2026-06-18 15:18:46,488|INFO|agent successfully created and send the object to the user
+2026-06-18 15:18:55,312|INFO|Trying to create new agent
+2026-06-18 15:18:55,365|INFO|agent successfully created and send the object to the user
+2026-06-18 15:19:22,363|INFO|The agent successfully updated!
+2026-06-18 15:19:24,740|INFO|The agent successfully updated!
+2026-06-18 15:19:36,058|INFO|trying to search the agent
+2026-06-18 15:19:36,078|INFO|The agent found and sending to the user
+2026-06-18 15:20:11,333|INFO|database created
+2026-06-18 15:20:16,808|INFO|database created
+2026-06-18 15:20:28,271|INFO|database created
+2026-06-18 15:20:29,473|INFO|database created
+2026-06-18 15:20:29,497|INFO|tables successfully created
+2026-06-18 15:20:30,972|INFO|trying to search the agent
+2026-06-18 15:20:30,987|INFO|The agent found and sending to the user
+2026-06-18 15:20:42,190|INFO|The agent successfully deactivated!
+2026-06-18 15:21:18,313|INFO|database created
+2026-06-18 15:21:18,333|INFO|tables successfully created
+2026-06-18 15:21:20,995|INFO|database created
+2026-06-18 15:21:21,017|INFO|tables successfully created
+2026-06-18 15:21:29,873|INFO|database created
+2026-06-18 15:21:29,894|INFO|tables successfully created
+2026-06-18 15:21:36,331|INFO|database created
+2026-06-18 15:21:36,351|INFO|tables successfully created
+2026-06-18 15:21:38,685|INFO|database created
+2026-06-18 15:21:38,710|INFO|tables successfully created
+2026-06-18 15:21:38,766|ERROR|The agent didn't updated probably he already non-active
+2026-06-18 15:21:49,399|INFO|Trying to get the performance to the agent
+2026-06-18 15:21:49,423|INFO|The performance dict send to user!
+2026-06-18 15:22:35,571|INFO|Trying to get the performance to the agent
+2026-06-18 15:22:35,598|INFO|The performance dict send to user!
+2026-06-18 15:22:57,627|ERROR|difficulty have to be between 1- 10 only
+2026-06-18 15:23:04,874|INFO|Trying to create the mission
+2026-06-18 15:23:33,379|INFO|database created
+2026-06-18 15:23:33,408|INFO|tables successfully created
+2026-06-18 15:24:29,117|INFO|database created
+2026-06-18 15:24:29,143|INFO|tables successfully created
+2026-06-18 15:24:30,982|INFO|database created
+2026-06-18 15:24:31,004|INFO|tables successfully created
+2026-06-18 15:24:40,840|INFO|Trying to create the mission
+2026-06-18 15:24:54,348|INFO|database created
+2026-06-18 15:24:54,372|INFO|tables successfully created
+2026-06-18 15:24:58,923|INFO|database created
+2026-06-18 15:24:58,945|INFO|tables successfully created
+2026-06-18 15:25:02,417|INFO|database created
+2026-06-18 15:25:02,438|INFO|tables successfully created
+2026-06-18 15:25:04,281|INFO|Trying to create the mission
